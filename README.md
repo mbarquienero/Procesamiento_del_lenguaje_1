@@ -1,3 +1,5 @@
+<img src="https://github.com/hernancontigiani/ceia_memorias_especializacion/raw/master/Figures/logoFIUBA.jpg" width="500" align="center">
+
 Procesamiento del Lenguaje Natural 1
 
 Procesamiento del Lenguaje Natural 1 es una materia de la especialización en Inteligencia Artificial de la Universidad de Buenos Aires (UBA). 
