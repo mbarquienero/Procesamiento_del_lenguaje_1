@@ -6,18 +6,18 @@ Procesamiento del Lenguaje Natural 1 es una materia de la especialización en In
 Introduce los fundamentos del procesamiento de lenguaje natural. A lo largo de la cursada se abordan técnicas y herramientas clave para la representación, análisis y modelado del lenguaje humano mediante algoritmos computacionales.
 La cursada de la materia se evaluó con cuatro desafios y los mismos fueron los siguientes: 
 
-DESAFIO 1
+Desafío 1
 
-Se abordó una tarea de clasificación de texto con el dataset 20 Newsgroups (cargado con fetch_20newsgroups y con headers/footers/quotes removidos para reducir ruido). Se aplicó un preprocesamiento liviano y se representaron los documentos mediante TF-IDF (bag-of-words), priorizando una canalización simple y reproducible. Se entrenaron modelos clásicos de NLP tradicional, en particular Naive Bayes (Multinomial/Complement) y clasificadores lineales, y se evaluó con train/test split y métricas como F1 y accuracy. El objetivo fue comprender el flujo básico —de texto crudo a vectores y a un clasificador— y valorar su eficiencia y relación costo/beneficio frente a alternativas más complejas.
+Se abordó la clasificación de texto en 20 Newsgroups mediante un flujo simple y reproducible: limpieza básica, representación TF-IDF y entrenamiento de modelos clásicos (Naive Bayes y lineales). Se evaluó con train/test split y métricas F1/accuracy, a fin de comprender el recorrido esencial texto → vectores → clasificador y su eficiencia frente a enfoques más complejos.
 
-DESAFIO 2
+Desafío 2
 
-Se trabajó en NLP distribuido para construir embeddings propios (vectores densos) a partir de un corpus de letras —p. ej., Eminem—. El flujo incluyó descompresión y carga del corpus, normalización y tokenización con NLTK (minúsculas, limpieza, stopwords) y la preparación de oraciones tokenizadas para entrenar un modelo tipo Word2Vec (CBOW/Skip-gram) con Gensim. El objetivo conceptual fue pasar de representaciones dispersas (TF-IDF del desafío anterior) a representaciones semánticas continuas, evaluando la calidad de los vectores mediante vecinos más cercanos/similitud y, opcionalmente, reducciones PCA/t-SNE para visualizar la estructura. Con esto se mostró cómo entrenar, guardar y reutilizar embeddings propios y por qué capturan relaciones léxicas/contextuales útiles para tareas posteriores.
+Se construyeron embeddings propios a partir de un corpus de letras mediante Word2Vec (Gensim), tras normalización y tokenización con NLTK. La calidad semántica de los vectores se examinó con vecinos más cercanos y visualizaciones (PCA/t-SNE), destacando el paso de representaciones dispersas a representaciones densas que capturan relaciones léxicas y de contexto.
 
-DESAFIO 3
+Desafío 3
 
-Se construyó un modelo de lenguaje a nivel carácter: a partir de un corpus de texto se realizó limpieza y tokenización por caracteres, se armaron diccionarios carácter↔índice y se generaron ventanas deslizantes para el entrenamiento (X = secuencias de longitud fija, y = siguiente carácter). Se entrenaron redes recurrentes (LSTM/GRU) con embeddings/caracteres para predecir el próximo carácter (aprendizaje autorregresivo con teacher forcing), monitoreando loss / val_loss. Finalmente, se evaluó la calidad generativa con decodificación greedy y beam search, lo que permitió sintetizar texto desde un seed y observar cómo el modelo captura patrones ortográficos y estilísticos del corpus.
+Se entrenó un modelo de lenguaje a nivel carácter con LSTM/GRU para predecir el siguiente carácter, usando ventanas deslizantes y teacher forcing. La capacidad generativa se exploró mediante greedy y beam search, evidenciando cómo el modelo aprende patrones ortográficos y estilísticos del corpus.
 
-DESAFIO 4
+Desafío 4
 
-Se desarrolló un chatbot seq2seq con atención en Keras/TensorFlow: se partió de data_volunteers.json y se realizó el preprocesamiento completo (normalización, tokenización, diccionarios word2idx separados para entrada y salida, inserción de <sos>/<eos>, y armado de encoder_input_sequences, decoder_output_sequences y decoder_targets, con longitudes p95/p99 y padding/máscara). En el modelo se utilizó encoder bidireccional (LSTM), embeddings GloVe fijos en el encoder, puente de estados al decoder, atención con máscara para ignorar <pad>, tied output projection (pesos de salida atados a la matriz de embedding del decoder) y layer norm. Se entrenó con teacher forcing, EarlyStopping + ReduceLROnPlateau y fases de finetuning; se registraron loss/val_loss y accuracy y se guardaron artefactos (diccionarios, matrices de embedding, pesos). Para inferencia se separaron encoder_infer y decoder_infer y se probaron greedy, beam search (con length penalty, mínima longitud y bloqueo de n-gramas repetidos) y sampling (temperatura, top-k/top-p), añadiendo un copy/lexical bias para favorecer términos del input y lograr respuestas más centradas y fluidas.
+Se desarrolló un chatbot seq2seq con atención: preprocesamiento completo (tokens <sos>/<eos>, diccionarios word2idx, padding/máscara), encoder BiLSTM con GloVe fijo, atención con máscara y tied output projection. Se entrenó con EarlyStopping/ReduceLROnPlateau y finetuning por fases; en inferencia se aplicaron greedy, beam (con length penalty) y sampling (temperatura, top-k/top-p), incorporando copy bias para mantener foco en el contenido de entrada.
