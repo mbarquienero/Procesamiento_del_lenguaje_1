@@ -2,7 +2,7 @@
 
 Procesamiento del Lenguaje Natural 1
 
-Procesamiento del Lenguaje Natural 1 es una materia de la especialización en Inteligencia Artificial de la Universidad de Buenos Aires (UBA). 
+Es una materia de la especialización en Inteligencia Artificial de la Universidad de Buenos Aires (UBA). 
 Introduce los fundamentos del procesamiento de lenguaje natural. A lo largo de la cursada se abordan técnicas y herramientas clave para la representación, análisis y modelado del lenguaje humano mediante algoritmos computacionales.
 La cursada de la materia se evaluó con cuatro desafios y los mismos fueron los siguientes: 
 
